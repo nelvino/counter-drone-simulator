@@ -25,8 +25,12 @@ Feel free to write code to complete the implementation of the app instead of onl
 ## Instructions to run the sample
 
 ```
-# Bring it up
+# Bring it up (Golang app)
 docker compose up --build
+
+# If using the TS app
+cd drone_publisher_ts && npm run dev
+cd drone_subscriber_ts && npm run dev
 
 # Websocket endpoint, use your favourite WS client
 ws://localhost:8080
