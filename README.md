@@ -19,8 +19,8 @@ More advanced and intelligent flight paths will be given additional brownie poin
 The flying pattern can be changed via HTTP request or direct command through websocket.
 
 Task:
-Review the provided frontend and backend code and give comments on what would need to be done to make it production ready including testing.
-Feel free to write code to complete the implementation of the app instead of only providing comments.
+Review the provided frontend and backend code and write code to complete the implementation of the app. 
+Additionally give comments on what would need to be done to make it production ready including testing.
 
 ## Instructions to run the sample
 
