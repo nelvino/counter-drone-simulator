@@ -1,31 +1,32 @@
-import { FC } from "react";
-import styled from "@emotion/styled";
+import { MapContainer, TileLayer } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
 
-import "./Map.css"; // Default Leaflet styles
-import { MapContainer, TileLayer } from "react-leaflet";
-import { MarkerLayer, Marker } from "react-leaflet-marker";
-import DroneMarker from "./DroneMarker";
+import { MarkerLayer, Marker } from 'react-leaflet-marker'
+import DroneMarker from './DroneMarker'
 
-const StyledMap = styled(MapContainer)`
-  height: calc(100vh);
-  position: relative;
-`;
+const mapStyles = {
+	height: 'calc(100vh)',
+}
 
-const Map: FC = () => {
-  return (
-      <StyledMap
-        center={[-33.946765, 151.1796423]}
-        zoom={14}
-        scrollWheelZoom={false}
-      >
-        <TileLayer attribution="" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <MarkerLayer>
-          <Marker position={[-33.946765, 151.1796423]}>
-            <DroneMarker />
-          </Marker>
-        </MarkerLayer>
-      </StyledMap>
-  );
-};
+const Map = () => {
+	return (
+		<MapContainer
+			center={[-33.946765, 151.1796423]}
+			zoom={14}
+			scrollWheelZoom={false}
+			style={mapStyles}
+		>
+			<TileLayer
+				attribution=''
+				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+			/>
+			<MarkerLayer>
+				<Marker position={[-33.946765, 151.1796423]}>
+					<DroneMarker />
+				</Marker>
+			</MarkerLayer>
+		</MapContainer>
+	)
+}
 
-export default Map;
+export default Map
