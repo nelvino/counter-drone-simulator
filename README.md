@@ -36,7 +36,7 @@ Currently, the frontend provides:
 - a placeholder icon of a drone on the map
 - websocket connection with the received data logged to the console
 
-## 3. Tasks
+### 3. Tasks
 
 [Frontend Tasks](./TASKS.frontend.md)
 
@@ -44,7 +44,7 @@ Currently, the frontend provides:
 
 For full-stack applicants pick Task 5 in the Frontend Tasks considering the requirements explained in the Backend Task.
 
-## Development notes
+### 4. Development notes
 
 This project has been setup for development using VS Code.
 
