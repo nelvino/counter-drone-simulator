@@ -3,7 +3,7 @@
 
 ### Task 1
 
-(30mins - 60mins)
+(30mins - 45mins)
 
 **The drone icon moves according to updates on the websocket**
 
@@ -17,7 +17,7 @@ Note: unnecessary re-renders should be avoided
 
 ### Task 2
 
-(30 mins - 60 mins)
+(30 mins - 45 mins)
 
 **As the drone moves on the map, add a tracking line**
 
@@ -25,11 +25,23 @@ Note: unnecessary re-renders should be avoided
 
 A line should trail the drone marker, indicating the path history of the detection location updates
 
-Tip: Leaflet has a _Polyline_ component suitable for this
+Tip: React Leaflet has a _Polyline_ component suitable for this
 
 ---
 
 ### Task 3
+
+(30 mins - 45 mins)
+
+**Handle when the drone moves outside of the visible map area**
+
+As the drone marker moves around, find a solution for handling when the marker moves outside of the visible map.
+
+Provide an option in the UI to enable/disable this feature.
+
+---
+
+### Task 4
 
 (30 mins - 45 mins)
 
@@ -41,7 +53,7 @@ Note: **vitest** is already included in the package.json `devDependencies`
 
 ---
 
-### Task 4
+### Task 5
 
 (open ended)
 
@@ -53,7 +65,7 @@ Note: you might like to consider error handling
 
 ---
 
-### Task 5 - Full Stack
+### Task 6 - Full Stack
 
 (1 - 2 hours)
 
