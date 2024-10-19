@@ -4,18 +4,10 @@ import 'leaflet/dist/leaflet.css'
 
 import { MarkerLayer, Marker } from 'react-leaflet-marker'
 import DroneMarker from './DroneMarker'
+import FollowDroneCheckbox from './FollowDroneCheckbox'
 
 const mapStyles = {
 	height: 'calc(100vh)',
-}
-
-const checkboxStyles: React.CSSProperties = {
-	position: 'absolute',
-	top: 20,
-	right: 10,
-	zIndex: 1000,
-	backgroundColor: 'white',
-	padding: 5,
 }
 
 interface MapProps {
@@ -55,16 +47,10 @@ const Map = ({ latitude, longitude, path }: MapProps) => {
 			scrollWheelZoom={false}
 			style={mapStyles}
 		>
-			<div style={checkboxStyles}>
-				<label>
-					<input
-						type='checkbox'
-						checked={followDrone}
-						onChange={() => setFollowDrone(!followDrone)}
-					/>
-					Follow Drone
-				</label>
-			</div>
+			<FollowDroneCheckbox
+				followDrone={followDrone}
+				setFollowDrone={setFollowDrone}
+			/>
 			<TileLayer
 				attribution=''
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
