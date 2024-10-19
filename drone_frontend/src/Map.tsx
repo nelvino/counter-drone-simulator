@@ -1,4 +1,5 @@
-import { MapContainer, Polyline, TileLayer } from 'react-leaflet'
+import { useEffect, useState } from 'react'
+import { MapContainer, Polyline, TileLayer, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import { MarkerLayer, Marker } from 'react-leaflet-marker'
@@ -8,13 +9,45 @@ const mapStyles = {
 	height: 'calc(100vh)',
 }
 
+const checkboxStyles: React.CSSProperties = {
+	position: 'absolute',
+	top: 20,
+	right: 10,
+	zIndex: 1000,
+	backgroundColor: 'white',
+	padding: 5,
+}
+
 interface MapProps {
 	latitude: number
 	longitude: number
 	path: [number, number][]
 }
 
+interface DroneMapAutoFollowProps {
+	latitude: number
+	longitude: number
+	followDrone: boolean
+}
+
+const DroneMapAutoFollow = ({
+	latitude,
+	longitude,
+	followDrone,
+}: DroneMapAutoFollowProps) => {
+	const map = useMap()
+
+	useEffect(() => {
+		if (followDrone) {
+			map.setView([latitude, longitude], map.getZoom())
+		}
+	}, [latitude, longitude, map, followDrone])
+
+	return null
+}
 const Map = ({ latitude, longitude, path }: MapProps) => {
+	const [followDrone, setFollowDrone] = useState(false)
+
 	return (
 		<MapContainer
 			center={[-33.946765, 151.1796423]}
@@ -22,6 +55,16 @@ const Map = ({ latitude, longitude, path }: MapProps) => {
 			scrollWheelZoom={false}
 			style={mapStyles}
 		>
+			<div style={checkboxStyles}>
+				<label>
+					<input
+						type='checkbox'
+						checked={followDrone}
+						onChange={() => setFollowDrone(!followDrone)}
+					/>
+					Follow Drone
+				</label>
+			</div>
 			<TileLayer
 				attribution=''
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -35,6 +78,11 @@ const Map = ({ latitude, longitude, path }: MapProps) => {
 					/>
 				</Marker>
 			</MarkerLayer>
+			<DroneMapAutoFollow
+				latitude={latitude}
+				longitude={longitude}
+				followDrone={followDrone}
+			/>
 		</MapContainer>
 	)
 }
