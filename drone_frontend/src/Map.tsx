@@ -1,8 +1,10 @@
-import { MapContainer, Polyline, TileLayer } from 'react-leaflet'
+import { useEffect, useState } from 'react'
+import { MapContainer, Polyline, TileLayer, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import { MarkerLayer, Marker } from 'react-leaflet-marker'
 import DroneMarker from './DroneMarker'
+import FollowDroneCheckbox from './FollowDroneCheckbox'
 
 const mapStyles = {
 	height: 'calc(100vh)',
@@ -14,7 +16,30 @@ interface MapProps {
 	path: [number, number][]
 }
 
+interface DroneMapAutoFollowProps {
+	latitude: number
+	longitude: number
+	followDrone: boolean
+}
+
+const DroneMapAutoFollow = ({
+	latitude,
+	longitude,
+	followDrone,
+}: DroneMapAutoFollowProps) => {
+	const map = useMap()
+
+	useEffect(() => {
+		if (followDrone) {
+			map.setView([latitude, longitude], map.getZoom())
+		}
+	}, [latitude, longitude, map, followDrone])
+
+	return null
+}
 const Map = ({ latitude, longitude, path }: MapProps) => {
+	const [followDrone, setFollowDrone] = useState(false)
+
 	return (
 		<MapContainer
 			center={[-33.946765, 151.1796423]}
@@ -22,6 +47,10 @@ const Map = ({ latitude, longitude, path }: MapProps) => {
 			scrollWheelZoom={false}
 			style={mapStyles}
 		>
+			<FollowDroneCheckbox
+				followDrone={followDrone}
+				setFollowDrone={setFollowDrone}
+			/>
 			<TileLayer
 				attribution=''
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -35,6 +64,11 @@ const Map = ({ latitude, longitude, path }: MapProps) => {
 					/>
 				</Marker>
 			</MarkerLayer>
+			<DroneMapAutoFollow
+				latitude={latitude}
+				longitude={longitude}
+				followDrone={followDrone}
+			/>
 		</MapContainer>
 	)
 }
