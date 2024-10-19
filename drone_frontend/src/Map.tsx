@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, Polyline, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import { MarkerLayer, Marker } from 'react-leaflet-marker'
@@ -11,9 +11,10 @@ const mapStyles = {
 interface MapProps {
 	latitude: number
 	longitude: number
+	path: [number, number][]
 }
 
-const Map = ({ latitude, longitude }: MapProps) => {
+const Map = ({ latitude, longitude, path }: MapProps) => {
 	return (
 		<MapContainer
 			center={[-33.946765, 151.1796423]}
@@ -28,6 +29,10 @@ const Map = ({ latitude, longitude }: MapProps) => {
 			<MarkerLayer>
 				<Marker position={[latitude, longitude]}>
 					<DroneMarker />
+					<Polyline
+						pathOptions={{ dashArray: '5, 10', color: 'red' }}
+						positions={path}
+					/>
 				</Marker>
 			</MarkerLayer>
 		</MapContainer>
