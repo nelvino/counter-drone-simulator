@@ -8,7 +8,12 @@ const mapStyles = {
 	height: 'calc(100vh)',
 }
 
-const Map = () => {
+interface MapProps {
+	latitude: number
+	longitude: number
+}
+
+const Map = ({ latitude, longitude }: MapProps) => {
 	return (
 		<MapContainer
 			center={[-33.946765, 151.1796423]}
@@ -21,7 +26,7 @@ const Map = () => {
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 			/>
 			<MarkerLayer>
-				<Marker position={[-33.946765, 151.1796423]}>
+				<Marker position={[latitude, longitude]}>
 					<DroneMarker />
 				</Marker>
 			</MarkerLayer>
